@@ -15,4 +15,19 @@ public class LivroController {
 		// Retorna a view que deve ser chamada, neste exemplo a pagina home (html)
 		return "menu";
 	}
+	@GetMapping("/cadastrar")
+	public ModelAndView cadastraLivro(Livro livro) {
+		ModelAndView mv = new ModelAndView("cadastrarLivro");
+		mv.addObject("livro", livro);
+		return mv;
+	}
+
+	@PostMapping("/salvar")
+	public ModelAndView adicionar(Livro livro) {
+		System.out.println("ISBN digitado na interface ===>" + livro.getIsbn());
+		ModelAndView modelAndView = new ModelAndView("consultarLivro");
+		modelAndView.addObject("message", livro.getIsbn());
+		return modelAndView;
+	}
+
 }
